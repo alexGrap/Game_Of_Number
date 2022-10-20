@@ -35,6 +35,7 @@ signals:
     void signals_from_key(int buttonID);
 private:
     Game game = Game();
+    QPushButton **button;
     int cur_button;
     int circle;
     QTimer *tmr;

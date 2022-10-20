@@ -11,18 +11,20 @@ MainWindow::MainWindow(QWidget *parent)
     tmr->setInterval(10000);
     circle = 1;
     ui->setupUi(this);
+    button = new QPushButton*();
+    button[0] = ui->button_1;
+    button[1] = ui->button_2;
+    button[2] = ui->button_3;
+    button[3] = ui->button_4;
+    button[4] = ui->button_5;
+    button[5] = ui->button_6;
+    button[6] = ui->button_7;
+    button[7] = ui->button_8;
+    button[8] = ui->button_9;
+    for (int i = 0; i < 9; i++) {button[i]->hide();}
     ui->start_button->setStyleSheet("font: bold;background-color: green;font-size: 48px;height: 48px;width: 120px;");
-    ui->button_1->hide();
-    ui->button_2->hide();
-    ui->button_3->hide();
-    ui->button_4->hide();
-    ui->button_5->hide();
-    ui->button_6->hide();
-    ui->button_7->hide();
     ui->quit_button->setStyleSheet("font: bold;background-color: red;font-size: 36px;height: 48px;width: 120px;");
     ui->quit_button->hide();
-    ui->button_8->hide();
-    ui->button_9->hide();
     QObject::connect(this, SIGNAL(signals_from_key(int)), this, SLOT(signals_returner(int)));
 }
 
@@ -37,8 +39,6 @@ void MainWindow::on_start_button_clicked()
     QMessageBox mes, mes_1;
     ui->start_button->hide();
     ui->quit_button->show();
-    QPushButton *button[9] = {ui->button_1, ui->button_2, ui->button_3, ui->button_4, ui->button_5,
-                         ui->button_6, ui->button_7, ui->button_8, ui->button_9};
     for (int i = 0; i < 9; i++)
     {
         button[i]->show();
@@ -67,8 +67,6 @@ void MainWindow::on_start_button_clicked()
 
 void MainWindow::fill_field(){
     QString *number_array;
-    QPushButton *button[9] = {ui->button_1, ui->button_2, ui->button_3, ui->button_4, ui->button_5,
-                         ui->button_6, ui->button_7, ui->button_8, ui->button_9};
     number_array = game.generate_number();
 
     for (int i = 0; i < 9; i++)
