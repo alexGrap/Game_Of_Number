@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include "game.h"
-#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -38,7 +37,6 @@ private:
     QPushButton **button;
     int cur_button;
     int circle;
-    QTimer *tmr;
     Ui::MainWindow *ui;
     void fill_field();
     void send_message(QString *arr);

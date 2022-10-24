@@ -7,7 +7,7 @@ Game::Game(){
 
 int Game::getRandom(int start, int end)
 {
-    uniform_int_distribution<int> randomNum(1, 100);
+    uniform_int_distribution<int> randomNum( start, end);
     return randomNum(randomEngine);
 }
 
@@ -17,6 +17,14 @@ QString *Game::generate_number()
     for (int i = 0; i < 9; i++)
     {
         QString a = QVariant(getRandom(1,100)).toString();
+        for (int j = 0; j < i; j++) {
+            if (num_array[j] == a) {
+                while (a == num_array[j]) {
+                    a = QVariant(getRandom(1,100)).toString();
+                }
+            }
+        }
+
         num_array[i] = a;
     }
     return num_array;
@@ -43,5 +51,10 @@ bool Game::game_compare(int button)
         }
     }
     return false;
+}
+
+Game::~Game()
+{
+    delete[] order;
 }
 

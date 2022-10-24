@@ -2,13 +2,10 @@
 #include "ui_mainwindow.h"
 
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    tmr = new QTimer();
-    tmr->setInterval(10000);
     circle = 1;
     ui->setupUi(this);
     button = new QPushButton*();
@@ -21,7 +18,9 @@ MainWindow::MainWindow(QWidget *parent)
     button[6] = ui->button_7;
     button[7] = ui->button_8;
     button[8] = ui->button_9;
-    for (int i = 0; i < 9; i++) {button[i]->hide();}
+    for (int i = 0; i < 9; i++) {
+        button[i]->hide();
+    }
     ui->start_button->setStyleSheet("font: bold;background-color: green;font-size: 48px;height: 48px;width: 120px;");
     ui->quit_button->setStyleSheet("font: bold;background-color: red;font-size: 36px;height: 48px;width: 120px;");
     ui->quit_button->hide();
@@ -30,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    delete[] button;//mem leak
     delete ui;
 }
 
@@ -37,6 +37,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_start_button_clicked()
 {
     QMessageBox mes, mes_1;
+    ui->start_label->hide();
     ui->start_button->hide();
     ui->quit_button->show();
     for (int i = 0; i < 9; i++)
@@ -48,21 +49,26 @@ void MainWindow::on_start_button_clicked()
     QObject::connect(this, SIGNAL(signals_from_key(int)), &loop, SLOT(quit()));
     cur_button = -100;
     int touched = 0;
-    while (touched < circle) {
+    while (touched != circle) {
         loop.exec();
         touched++;
         if (!game.game_compare(cur_button))
         {
             exit_window(1);
         }
+        cur_button = -100;
     }
     circle++;
 
-    if (circle == 6)
+    if (circle == 5)
     {
        exit_window(2);
     }
-    on_start_button_clicked();
+    else
+    {
+        on_start_button_clicked();
+
+    }
 }
 
 void MainWindow::fill_field(){
@@ -79,11 +85,11 @@ void MainWindow::fill_field(){
 
 void MainWindow::send_message(QString *arr) {
     QMessageBox message;
-    QString str = "";
+    QString str = "You must find: ";
     game.generate_order(circle);
     for (int i = 0; i < circle; i++) {
         str += arr[game.order[i] - 1];
-        str += " ";
+        i + 1 == circle ? str += " " : str += "; ";
     }
     message.setText(str);
     message.exec();
@@ -108,6 +114,7 @@ void MainWindow::exit_window(int flag)
     }
     else {
         circle = 1;
+        cur_button = -100;
         on_start_button_clicked();
     }
 }
@@ -176,4 +183,3 @@ void MainWindow::on_quit_button_clicked()
 {
     exit(0);
 }
-

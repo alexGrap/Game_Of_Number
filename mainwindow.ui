@@ -30,7 +30,7 @@
     <property name="geometry">
      <rect>
       <x>280</x>
-      <y>190</y>
+      <y>280</y>
       <width>251</width>
       <height>131</height>
      </rect>
@@ -175,6 +175,35 @@
     </property>
     <property name="text">
      <string>Quit</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="start_label">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>40</y>
+      <width>681</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>42</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Plain</enum>
+    </property>
+    <property name="text">
+     <string>Game Of Number</string>
     </property>
    </widget>
   </widget>

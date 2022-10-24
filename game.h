@@ -16,6 +16,7 @@ public:
     void generate_order(int amount);
     bool game_compare(int button);
     int *order;
+    ~Game();
 private:
     default_random_engine randomEngine;
     int getRandom(int start, int end);
