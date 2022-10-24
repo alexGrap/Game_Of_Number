@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete[] button;//mem leak
+    delete[] button;
     delete ui;
 }
 
