@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete[] button;//mem leak
+    delete[] button;
     delete ui;
 }
 
@@ -52,7 +52,7 @@ void MainWindow::on_start_button_clicked()
     while (touched != circle) {
         loop.exec();
         touched++;
-        if (!game.game_compare(cur_button))
+        if (!game.game_compare(cur_button, circle))
         {
             exit_window(1);
         }
@@ -60,7 +60,7 @@ void MainWindow::on_start_button_clicked()
     }
     circle++;
 
-    if (circle == 5)
+    if (circle == 6)
     {
        exit_window(2);
     }

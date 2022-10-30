@@ -41,9 +41,9 @@ void Game::generate_order(int amount)
     order = ord_array;
 }
 
-bool Game::game_compare(int button)
+bool Game::game_compare(int button, int circle)
 {
-    for (int i = 0; i < sizeof(order); i++)
+    for (int i = 0; i < circle; i++)
     {
         if (order[i] == button) {
             order[i] = 0;

@@ -14,7 +14,7 @@ public:
     Game();
     QString *generate_number();
     void generate_order(int amount);
-    bool game_compare(int button);
+    bool game_compare(int button, int circle);
     int *order;
     ~Game();
 private:
